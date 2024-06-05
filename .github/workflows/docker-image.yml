@@ -11,7 +11,7 @@ env:
   HELM_CHART_REPO: "https://airflow.apache.org"
   HELM_CHART_NAME: "apache-airflow/airflow"
   NAMESPACE: "airflow"
-  DOCKER_URL: "https://hub.docker.com/"
+  DOCKER_URL: "hub.docker.com"
   DOCKER_USER: ${{ secrets.DOCKER_USER }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   ENVIRONMENT: "stage"
