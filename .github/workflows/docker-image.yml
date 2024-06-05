@@ -11,9 +11,11 @@ env:
   HELM_CHART_REPO: "https://airflow.apache.org"
   HELM_CHART_NAME: "apache-airflow/airflow"
   NAMESPACE: "airflow"
+  DOCKER_URL: "https://hub.docker.com/"
   DOCKER_USER: ${{ secrets.DOCKER_USER }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   ENVIRONMENT: "stage"
+
 
 jobs:
 
@@ -23,8 +25,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: docker login
-      run:  docker login -u DOCKER_USER -p DOCKER_PASSWORD
+    - name: Login to private registry
+      uses: docker/login-action@v1
+      with:
+        registry: DOCKER_URL
+        username: DOCKER_USER
+        password: DOCKER_PASSWORD
     - name: Build the Docker image
       run: docker build . --file ./Dockerfile --tag vivek4sinha/airflow-docker:0606
     - name: Docker Push
