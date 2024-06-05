@@ -31,7 +31,10 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Build the Docker image
-      run: docker build . --file ./Dockerfile --tag vivek4sinha/airflow-docker:0606
-    - name: Docker Push
-      run: docker push vivek4sinha/airflow-docker:0606
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        file: ./Dockerfile
+        builder: ${{ steps.buildx.outputs.name }}
+        push: true
+        tags: 'vivek4sinha/airflow-docker:1234'
