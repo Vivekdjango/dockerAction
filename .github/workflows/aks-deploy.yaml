@@ -43,4 +43,4 @@ jobs:
           manifests/deployment.yaml
           manifests/service.yaml
         images: |
-          vivek4sinha/multi:${{ github.sha }}
+          manifests/deployment.yaml=vivek4sinha/multi:${{ github.sha }}
