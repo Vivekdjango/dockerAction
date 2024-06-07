@@ -36,11 +36,12 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         cluster-name: airflow
         resource-group: demo
+    
+    - name: Replace image tag placeholder
+      run: sed -i "s/IMAGE_TAG_PLACEHOLDER/${{ github.sha }}/g" manifests/deployment.yaml
 
     - uses: Azure/k8s-deploy@v1
       with:
         manifests: |
           manifests/deployment.yaml
           manifests/service.yaml
-        images: |
-          manifests/deployment.yaml=vivek4sinha/multi:${{ github.sha }}
