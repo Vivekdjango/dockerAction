@@ -37,4 +37,4 @@ jobs:
         file: ./Dockerfile
         builder: ${{ steps.buildx.outputs.name }}
         push: true
-        tags: 'vivek4sinha/airflow-docker:1234'
+        tags: 'vivek4sinha/airflow-docker:'${{ github.sha }}
