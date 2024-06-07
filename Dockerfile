@@ -1,5 +1,7 @@
-FROM apache/airflow:2.6.2
-
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
-USER airflow
+FROM python:3.6
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+EXPOSE 8080
+ENTRYPOINT ["python"]
+CMD ["app/app.py"]
